@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imperial County DA • Case Dashboard</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alasql/dist/alasql.min.js"></script>
+
+  <!-- dashboard logic -->
+  <script type="module" defer src="app.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Imperial County DA</h1>
+      <p>Case Status &amp; Processing Times</p>
+    </div>
+  </header>
+
+
+  <!-- main panel -->
+      <section id="panelMain">
+
+        <div class="dashboard-header">
+          <h2>Case Statistics</h2>
+          <p>View case outcomes and demographics over time</p>
+        </div>
+
+        <div class="layout">
+          <!-- sidebar -->
+          <aside class="sidebar">
+            <h2>Filters</h2>
+
+            <label>Measure
+              <select id="metric">
+                <option value="all_cases">All cases received</option>
+                <option value="accepted">Accepted cases</option>
+                <option value="rejected">Rejected cases</option>
+                <optgroup label="Completed cases">
+                  <option value="Sentenced">Sentenced</option>
+                  <option value="Dismissed">Dismissed</option>
+                </optgroup>
+              </select>
+            </label>
+
+            <label>Time range
+              <select id="range">
+                <option value="last12">Last 12 months</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="annual">Annual</option>
+              </select>
+            </label>
+
+            <label>Group by
+              <select id="dimension"></select>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" id="pieToggle" checked />
+              Use pie-chart mode
+            </label>
+          </aside>
+
+          <!-- charts -->
+          <main class="dashboard">
+            <div id="compareSection" style="display:none;margin-top:40px;">
+              <h2 style="text-align:center;">Comparison chart</h2>
+              <div class="large-chart-container">
+                <canvas id="largeChart" height="150"></canvas>
+              </div>
+            </div>
+
+            <section id="chartGrid" class="chart-grid"></section>
+          </main>
+        </div><!-- /.layout -->
+
+      </section><!-- /#panelMain -->
+
+</body>
+</html>
