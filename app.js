@@ -130,6 +130,7 @@ async function loadData(YEARS) {
 
   initDimension();
   build();
+ initLargeChart(); 
 }
 
 
@@ -544,5 +545,6 @@ function escapeHtml(s){
 }
 
 discoverYears().then(loadData);
+
 
 
