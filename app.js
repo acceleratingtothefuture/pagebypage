@@ -127,6 +127,9 @@ async function loadData(YEARS) {
       rows.push(row);
     });
   }
+
+  initDimension();
+  build();
 }
 
 
@@ -539,4 +542,7 @@ function escapeHtml(s){
     .replaceAll('"','&quot;')
     .replaceAll("'",'&#39;');
 }
+
+discoverYears().then(loadData);
+
 
