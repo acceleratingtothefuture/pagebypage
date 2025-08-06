@@ -33,7 +33,7 @@ const hoverBar = {
   afterDraw(c) {
     if (c.config.type !== 'line') return;
     const { ctx, tooltip, chartArea } = c;
-    if (!tooltip._active?.length) return;
+    if (!tooltip || !tooltip._active || !tooltip._active.length) return;
     const x = tooltip._active[0].element.x;
     ctx.save();
     ctx.fillStyle = 'rgba(0,0,0,.07)';
@@ -453,6 +453,7 @@ function renderLinePie(buckets,lineData,groupCounts,metricName){
   });
 
   function updatePie(idx){
+    if (!pieChart || !pieChart.data || !pieChart.data.datasets.length) return;
     const key=buckets[idx].key;
     const sliceLabels=[], sliceData=[], sliceColors=[];
     let colorIdx=1;
@@ -545,6 +546,7 @@ function escapeHtml(s){
 }
 
 discoverYears().then(loadData);
+
 
 
 
